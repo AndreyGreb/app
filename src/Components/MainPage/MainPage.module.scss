@@ -1,0 +1,29 @@
+.mainPage {
+  position: relative;
+  width: 100%;
+  height: 1600px;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 300px;
+    color: #fff;
+  }
+}
+
+.newCollectionBack {
+  background: url("../../assets/image/MainPage/newCollection.jpg");
+}
+
+.newCollection {
+  bottom: 200px;
+}
+
+.vintageInspiredBack {
+  background: url('../../assets/image/MainPage/vintageInspired.jpg');
+}
+
+.vintageInspired {
+  top: 480px;
+}

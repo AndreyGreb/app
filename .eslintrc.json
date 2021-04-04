@@ -30,7 +30,9 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "linebreak-style": "off",
-        "prettier/prettier": "warn"
-    }
+    "react/jsx-props-no-spreading": 0,
+    "linebreak-style": "off",
+    "prettier/prettier": "warn",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+}
 }
