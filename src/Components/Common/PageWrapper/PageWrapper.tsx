@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { visibleFormAuthAction } from "../../../store/GlobalStore/actions";
+import { toggleFormAuthAction } from '../../../store/FormAuth/actions'
+import { getVisibleFormAuth } from "../../../store/GlobalStore/selectors";
 import Footer from "../../Footer/Footer";
 import FormAccount from "../../FormAccount/FormAccount";
 import Header from "../../Header/Header";
@@ -11,25 +15,25 @@ interface IPageWrapper {
 }
 
 const PageWrapper: React.FC<IPageWrapper> = ({ children, colorHeader }: IPageWrapper) => {
-  const [visibleFormAccount, setVisibleFormAccount] = useState<boolean>(false);
-  const [toggleFormAccount, setToggleFormAccount] = useState<boolean>(true);
+ 
+
+  const dispatch = useDispatch()
+  const getvisibleForm = useSelector(getVisibleFormAuth)
 
   const openFormSignIn = () => {
-    setVisibleFormAccount(true);
-    setToggleFormAccount(true);
+    dispatch(visibleFormAuthAction(true))
+    dispatch(toggleFormAuthAction(true))
   };
   const closeFormAccount = () => {
-    setVisibleFormAccount(false);
+    dispatch(visibleFormAuthAction(false))
   };
   return (
     <>
       <div className={style.page}>
         <Header colorHeader={colorHeader} openFormSignIn={openFormSignIn} />
-        {visibleFormAccount ? (
+        {getvisibleForm ? (
           <FormAccount
             closeFormAccount={closeFormAccount}
-            toggleFormAccount={toggleFormAccount}
-            setToggleFormAccount={setToggleFormAccount}
           />
         ) : (
           ""

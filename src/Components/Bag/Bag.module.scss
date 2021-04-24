@@ -1,0 +1,63 @@
+.bag {
+    margin: 215px auto;
+    width: 1050px;
+
+    &__title {
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid #8c8c8c;
+        padding-bottom: 20px;
+
+        &-text {
+            margin-right: 40px;
+            font-size: 40px;
+            letter-spacing: 0.04em;
+        }
+
+        &-items {
+            font-size: 24px;
+            color: #8c8c8c
+        }
+    }
+
+    &__item {
+        display: flex;
+        margin-top: 60px;
+        padding-bottom: 170px;
+        border-bottom: 2px solid #8c8c8c;
+        img {
+            width: 320px;
+            height: 460px;
+            margin-right: 40px;
+        }
+
+        &-description {
+            display: flex;
+            flex-direction: column;
+            &-brand {
+                margin-bottom: 10px;
+                font-size: 32px;
+            }
+
+            &-name {
+                margin-bottom: 20px;
+                font-size: 16px;
+                color: #8c8c8c;
+            }
+
+            &-price {
+                margin-bottom: 110px;
+                font-size: 24px;
+            }
+
+            &-size {
+                margin-bottom: 35px;
+                font-size: 24px;
+            }
+
+            &-quantity {
+                font-size: 24px;
+            }
+        }
+    }
+}

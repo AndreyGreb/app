@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { userIsAuthAction, visibleFormAuthAction } from "../../../store/GlobalStore/actions";
+import { userCreateAccountnAction } from '../../../store/FormAuth/actions'
 
 import Button from "../../Common/UI/Button/Button";
 
@@ -21,6 +24,15 @@ const FormCreateAccount = ({
     email: "",
     password: "",
   });
+
+  const dispatch = useDispatch()
+
+  const onSubmit = () => {
+    dispatch(userCreateAccountnAction((inputState)))
+    dispatch(visibleFormAuthAction(false))
+    dispatch(userIsAuthAction(true))
+    alert("Registration success!")
+  }
 
   return (
    <>
@@ -57,7 +69,7 @@ const FormCreateAccount = ({
           </div>
 
           {/* block button */}
-          <Button inputState={inputState} text="SIGN UP" />
+          <Button onSubmit={onSubmit} inputState={inputState} text="SIGN UP" />
 
           {/* block footer */}
           <div className={style["form__content-footer"]}>

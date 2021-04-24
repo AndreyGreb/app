@@ -1,23 +1,27 @@
 import React, { useState } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
 import FormSignIn from "./FormSignIn/FormSignIn";
 
 import style from "./FormAccount.module.scss";
 import FormCreateAccount from "./FormCreateAccount/FormCreateAccount";
 
+import { formErrorAction, toggleFormAuthAction } from "../../store/FormAuth/actions";
+import { getToggleFormAuth } from "../../store/FormAuth/selectors";
+
 interface IFormAccount {
   closeFormAccount: (value: any) => void;
-  toggleFormAccount: boolean;
-  setToggleFormAccount: (value: any) => void;
 }
 
 const FormAccount = ({
   closeFormAccount,
-  toggleFormAccount,
-  setToggleFormAccount,
 }: IFormAccount) => {
+
+const dispatch = useDispatch()
+const getToggleFormAuthSelector = useSelector(getToggleFormAuth)
+
   const toggleForm = () => {
-    setToggleFormAccount(!toggleFormAccount);
+    dispatch(toggleFormAuthAction(!getToggleFormAuthSelector))
+    dispatch(formErrorAction(false))
   };
 
   return (
@@ -25,7 +29,7 @@ const FormAccount = ({
       <div className={style.form__content}>
         {/* block header */}
         <div className={style["form__content-header"]}>
-          <span>{toggleFormAccount ? "SIGN IN" : "CREATE ACCOUNT"}</span>
+          <span>{getToggleFormAuthSelector ? "SIGN IN" : "CREATE ACCOUNT"}</span>
           <svg
             onClick={closeFormAccount}
             width="32"
@@ -40,7 +44,7 @@ const FormAccount = ({
           </svg>
         </div>
 
-        {toggleFormAccount ? (
+        {getToggleFormAuthSelector ? (
           <FormSignIn toggleForm={toggleForm} />
         ) : (
           <FormCreateAccount toggleForm={toggleForm} />
